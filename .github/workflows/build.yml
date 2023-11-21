@@ -15,6 +15,7 @@ jobs:
       - name: Run linter
         run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
@@ -28,6 +29,7 @@ jobs:
       - name: Run linter
         run: npm run test
   deploy:
+    needs: [lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
